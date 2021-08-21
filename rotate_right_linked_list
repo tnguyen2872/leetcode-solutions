@@ -1,0 +1,24 @@
+
+#61. Rotate List
+#Given the head of a linked list, rotate the list to the right by k places. 
+
+class Solution:
+    def rotateRight(self, head: Optional[ListNode], k: int) -> Optional[ListNode]:
+        if k <= 0 or head == None or head.next == None:
+            return head
+        else:
+            n = 2
+            temp = head
+            while temp.next != None and temp.next.next != None:
+                temp = temp.next
+                n += 1
+            print(n)
+            if k % n == 0:
+                return head;
+            head2 = head;
+            head = temp.next;
+            temp.next = None;
+            head.next = head2;
+            
+            return self.rotateRight(head, (k % n) - 1)
+        
